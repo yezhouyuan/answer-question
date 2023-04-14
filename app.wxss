@@ -8,3 +8,13 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+.primary-text-color{
+  color: #008CFF;
+}
+.primary-bg-color{
+  background-color: #008CFF;
+}
+
+.hidden{
+  display: none;
+}

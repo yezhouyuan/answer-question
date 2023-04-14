@@ -1,0 +1,24 @@
+<!--pages/home/home.wxml-->
+<view class="home">
+  <view class="home-tabbar" >
+    <block wx:if="{{!searchVisible}}">
+      <van-icon name="wap-nav" color="#C8C9CC" size="36px" bind:tap="showMenu" />
+      <van-search disabled placeholder="搜索问卷" bind:click-input="showSearch" />
+      <van-button round size="small" type="info" bind:tap="onCreate">创建</van-button>
+    </block>
+    <block wx:else>
+      <van-search 
+        style="flex: 1;" 
+        disabled 
+        placeholder="搜索问卷" 
+        bind:search="onSearch" 
+        bind:cancel="onCancel"
+        show-action
+        shape="round"
+      />
+    </block>
+  </view>
+  <view class="home-content">
+    <text>{{ count }}</text>
+  </view>
+</view>

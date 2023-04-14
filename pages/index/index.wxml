@@ -18,6 +18,6 @@
     </block>
   </view>
   <view class="usermotto">
-    <van-button type="primary">{{motto}}</van-button>
+    <van-button type="primary" bind:tap="gotoHome">微信登录</van-button>
   </view>
 </view>
