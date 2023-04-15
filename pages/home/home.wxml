@@ -3,22 +3,87 @@
   <view class="home-tabbar" >
     <block wx:if="{{!searchVisible}}">
       <van-icon name="wap-nav" color="#C8C9CC" size="36px" bind:tap="showMenu" />
-      <van-search disabled placeholder="搜索问卷" bind:click-input="showSearch" />
+      <van-search disabled shape="round" placeholder="搜索问卷" bind:click-input="showSearch" />
       <van-button round size="small" type="info" bind:tap="onCreate">创建</van-button>
     </block>
     <block wx:else>
-      <van-search 
+      <van-search
+        model:value="{{ searchParams }}"
         style="flex: 1;" 
-        disabled 
-        placeholder="搜索问卷" 
+        placeholder="输入关键词搜索" 
         bind:search="onSearch" 
-        bind:cancel="onCancel"
+        bind:cancel="onSearchCancel"
         show-action
         shape="round"
       />
     </block>
   </view>
   <view class="home-content">
-    <text>{{ count }}</text>
+    <scroll-view
+      class="scroll"
+      scroll-y="true"
+      style="height: 100%;"
+      bind:scrolltoupper="upper" 
+      bind:scrolltolower="lower" 
+      bind:scroll="scroll" 
+      scroll-into-view="{{toView}}" 
+      scroll-top="{{scrollTop}}"
+    >
+      <view 
+        class="scroll-item" 
+        wx:for="{{dataList}}" 
+        wx:for-item="item"
+        wx:for-index="index"
+        bind:tap="paperDetail"
+        data-item="{{item}}"
+      >
+        <van-row>
+          <van-col span="18">
+            <view class="text title">{{ item.title }}</view>
+            <view class="text placeholer-color" style="font-size: 0.9rem;">{{ item.status? '发布': '未发布' }}</view>        
+          </van-col>
+          <van-col span="6" style="text-align: center;">
+            <view class="text title primary-text-color">{{ item.questionNum }}</view>
+            <view class="text font-size placeholer-color">答卷数量</view>    
+          </van-col>
+        </van-row>
+      </view>
+    </scroll-view>
   </view>
+
+  
+  <!-- 问卷操作弹出层 -->
+  <van-popup
+    model:show="{{ showPopup }}"
+    position="bottom"
+    closeable
+    custom-style="height: 75%;padding: 8px;background-color: #F5F5F5;"
+    bind:close="onPopupClose"
+  >
+    <view class="popup-header">
+      <text>{{ curPaper.title }}</text>
+      <text>(ID:{{ curPaper.id }})</text>
+    </view>
+    <van-row>
+      <van-col span="6">
+        <view class="popup-item-button" bind:tap="onRelease">
+          <van-icon name="guide-o" size="18px" color="#008CFF" />  
+          <view>发布</view>
+        </view>
+      </van-col>
+      <van-col span="6">
+        <view class="popup-item-button" bind:tap="onCopy">
+          <van-icon name="guide-o" size="18px" color="#008CFF" />  
+          <view>复制</view>
+        </view>
+      </van-col>
+      <van-col span="6">
+        <view class="popup-item-button" bind:tap="remove">
+          <van-icon name="guide-o" size="18px" color="#008CFF" />  
+          <view>删除</view>
+        </view>
+      </van-col>
+    </van-row>
+  </van-popup>
+
 </view>

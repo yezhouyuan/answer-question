@@ -8,13 +8,9 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
-.primary-text-color{
-  color: #008CFF;
-}
-.primary-bg-color{
-  background-color: #008CFF;
-}
-
+.primary-text-color{ color: #008CFF; }
+.primary-bg-color{ background-color: #008CFF; }
+.placeholer-color{ color: #C8C9CC; }
 .hidden{
   display: none;
 }

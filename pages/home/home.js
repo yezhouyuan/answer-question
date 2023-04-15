@@ -8,20 +8,32 @@ Page({
   data: {
     searchParams: "",
     searchVisible: false,
+    showPopup: false,
+    dataList: [
+      { id:"1", title: "测试1", questionNum: 12, status: "0" },
+      { id:"2", title: "测试1", questionNum: 12, status: "0" },
+      { id:"3", title: "测试1", questionNum: 12, status: "0" },
+
+    ],
+    curPaper: "",
   },
+  // 显示菜单
   showMenu() {
     wx.showToast({ title: '点击菜单', icon: 'none' });
   },
+  // 显示搜索
   showSearch() {
     this.setData({
       searchVisible: true,
     })
     wx.showToast({ title: '点击搜索', icon: 'none' });
   },
+  // 执行搜索
   onSearch() {
 
   },
-  onCancel() {
+  // 搜索框隐藏
+  onSearchCancel() {
     this.setData({
       searchVisible: false,
     })
@@ -29,41 +41,41 @@ Page({
   onCreate() {
     wx.showToast({ title: '点击创建', icon: 'none' });
   },
+  // 显示弹出层
+  paperDetail(e) {
+    this.setData({
+      showPopup: true,
+      curPaper: e.currentTarget.dataset.item,
+    })
+  },
+  // 弹出层关闭
+  onPopupClose() {
+    this.setData({
+      showPopup: false,
+    })
+  },
+  // 发布
+  onRelease() {
+    wx.showToast({ title: '发布', icon: 'none' });
+  },
+  // 复制
+  onCopy() {
+    wx.showToast({ title: '复制', icon: 'none' });
+  },
+  // 删除
+  remove() {
+    wx.showToast({ title: '删除', icon: 'none' });
+  },
+  // 编辑
+  edit() {
+    wx.showToast({ title: '编辑', icon: 'none' });
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
@@ -78,10 +90,4 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })
