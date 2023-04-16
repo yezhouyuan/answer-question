@@ -4,7 +4,7 @@
     "pages/logs/logs",
     "pages/home/home",
     "pages/editPaper/editPaper",
-    "pages/createPaper/createPaper"
+    "pages/templatePaper/templatePaper"
   ],
   "window": {
     "backgroundTextStyle": "light",

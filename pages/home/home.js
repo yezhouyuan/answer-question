@@ -41,11 +41,11 @@ Page({
   // 创建问卷
   onCreate() {
     wx.navigateTo({
-      url: '../createPaper/createPaper'
+      url: '../templatePaper/templatePaper'
     })
   },
   // 显示弹出层
-  paperDetail(e) {
+  showPaperHandle(e) {
     this.setData({
       showPopup: true,
       curPaper: e.currentTarget.dataset.item,

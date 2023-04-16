@@ -1,0 +1,39 @@
+/* pages/createPaper/createPaper.wxss */
+.create-paper{
+  width: 100vw;
+  height: 100vh;
+  background-color: #F5F5F5;
+}
+.create-paper-tabbar{
+  background-color: #ffffff;
+}
+.scroll{
+  
+}
+.scroll-content{
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16rpx;
+}
+.scroll-item{
+  display: flex;
+  width: 240rpx;
+  height: 180rpx;
+  border-radius: 8px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  padding: 40rpx;
+  margin: 20rpx;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.item-title{
+  display: flex;
+  margin-bottom: 70rpx;
+}
+.item-num{
+  font-size: 0.8rem;
+}

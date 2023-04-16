@@ -1,0 +1,39 @@
+<!--pages/createPaper/createPaper.wxml-->
+<view class="create-paper">
+  <view class="create-paper-tabbar" >
+    <van-search 
+      model:value="{{ searchParams }}"
+      shape="round" 
+      placeholder="搜索问卷" 
+      bind:click-input="showSearch" 
+    />
+  </view>
+  <view class="create-paper-content">
+    <scroll-view
+      class="scroll"
+      scroll-y="true"
+      style="height: 100%;"
+    >
+      <view class="scroll-content">
+        <view class="scroll-item" bind:tap="createPaper">
+          <van-icon name="guide-o" size="18px" color="#008CFF" />  
+          <text>从空白创建</text>
+        </view>
+        <view 
+          class="scroll-item" 
+          wx:for="{{ otherPaperList }}" 
+          wx:for-item="item"
+          wx:for-index="index"
+          bind:tap="paperDetail"
+          data-item="{{ item }}"
+        >
+          <view class="item-title">
+            <van-icon name="guide-o" size="18px" color="#008CFF" />  
+            <view>{{ item.title }}</view>
+          </view>
+          <text class="item-num placeholer-color">共{{ item.questionNum }}题</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

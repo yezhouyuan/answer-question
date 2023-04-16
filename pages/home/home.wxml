@@ -34,7 +34,7 @@
         wx:for="{{dataList}}" 
         wx:for-item="item"
         wx:for-index="index"
-        bind:tap="paperDetail"
+        bind:tap="showPaperHandle"
         data-item="{{item}}"
       >
         <van-row>
