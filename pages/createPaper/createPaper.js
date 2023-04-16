@@ -1,26 +1,29 @@
-// pages/template/template.js
+// pages/createPaper/createPaper.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    searchParams: "",
-    otherPaperList: [
-      { id: 1111, title: "测试测试测试测试测试测试测试", questionNum: 12 },
-      { id: 2222, title: "测试", questionNum: 12 },
-      { id: 3333, title: "测试", questionNum: 12 },
-      { id: 4444, title: "测试", questionNum: 12 },
-      { id: 5555, title: "测试", questionNum: 12 },
-    ],
+    isEmpty: false,
   },
 
-  // 从空白创建
-  createPaper() {
-    wx.navigateTo({
-      url: '../createPaper/createPaper'
-    })
+  // 提交
+  submit(e) {
+    const textarea = e.detail.value.textarea;
+    if (textarea) {
+      this.setData({
+        isEmpty: false,
+      })
+    } else {
+      this.setData({
+        isEmpty: true,
+      })
+    }
   },
+
+
+
 
   /**
    * 生命周期函数--监听页面加载

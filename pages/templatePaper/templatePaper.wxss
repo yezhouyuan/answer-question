@@ -1,10 +1,10 @@
-/* pages/createPaper/createPaper.wxss */
-.create-paper{
+/* pages/template/template.wxss */
+.template-paper{
   width: 100vw;
   height: 100vh;
   background-color: #F5F5F5;
 }
-.create-paper-tabbar{
+.template-paper-tabbar{
   background-color: #ffffff;
 }
 .scroll{

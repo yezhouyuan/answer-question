@@ -1,6 +1,6 @@
-<!--pages/createPaper/createPaper.wxml-->
-<view class="create-paper">
-  <view class="create-paper-tabbar" >
+<!--pages/templatePaper/templatePaper.wxml-->
+<view class="template-paper">
+  <view class="template-paper-tabbar" >
     <van-search 
       model:value="{{ searchParams }}"
       shape="round" 
@@ -8,7 +8,7 @@
       bind:click-input="showSearch" 
     />
   </view>
-  <view class="create-paper-content">
+  <view class="template-paper-content">
     <scroll-view
       class="scroll"
       scroll-y="true"
@@ -29,7 +29,7 @@
         >
           <view class="item-title">
             <van-icon name="guide-o" size="18px" color="#008CFF" />  
-            <view>{{ item.title }}</view>
+            <view class="van-multi-ellipsis--l2">{{ item.title }}</view>
           </view>
           <text class="item-num placeholer-color">共{{ item.questionNum }}题</text>
         </view>

@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/home/home",
     "pages/editPaper/editPaper",
-    "pages/templatePaper/templatePaper"
+    "pages/templatePaper/templatePaper",
+    "pages/createPaper/createPaper"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +27,8 @@
     "van-cell": "@vant/weapp/cell/index",
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-grid": "@vant/weapp/grid/index",
-    "van-grid-item": "@vant/weapp/grid-item/index"
+    "van-grid-item": "@vant/weapp/grid-item/index",
+    "van-notify": "@vant/weapp/notify/index"
   },
   "networkTimeout": {
     "request": 10000,
