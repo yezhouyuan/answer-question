@@ -14,6 +14,9 @@ Page({
     if (textarea) {
       this.setData({
         isEmpty: false,
+      });
+      wx.navigateTo({
+        url: '../editPaper/editPaper'
       })
     } else {
       this.setData({
