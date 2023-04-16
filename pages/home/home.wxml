@@ -83,6 +83,12 @@
           <view>删除</view>
         </view>
       </van-col>
+      <van-col span="6">
+        <view class="popup-item-button" bind:tap="edit">
+          <van-icon name="guide-o" size="18px" color="#008CFF" />  
+          <view>编辑</view>
+        </view>
+      </van-col>
     </van-row>
   </van-popup>
 

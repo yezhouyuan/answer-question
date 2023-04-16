@@ -38,8 +38,11 @@ Page({
       searchVisible: false,
     })
   },
+  // 创建问卷
   onCreate() {
-    wx.showToast({ title: '点击创建', icon: 'none' });
+    wx.navigateTo({
+      url: '../createPaper/createPaper'
+    })
   },
   // 显示弹出层
   paperDetail(e) {
@@ -68,7 +71,10 @@ Page({
   },
   // 编辑
   edit() {
-    wx.showToast({ title: '编辑', icon: 'none' });
+    this.onPopupClose();
+    wx.navigateTo({
+      url: '../editPaper/editPaper'
+    })
   },
   /**
    * 生命周期函数--监听页面加载
