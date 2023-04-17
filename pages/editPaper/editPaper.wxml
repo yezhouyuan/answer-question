@@ -1,3 +1,129 @@
 <!--pages/editPaper/editPaper.wxml-->
-<view>
+<view class="edit-paper">
+  <view model:class="{{selectedIndex == -1? 'edit-paper-item selected': 'edit-paper-item'}}">
+    <view 
+      class="edit-paper-item-content" 
+      data-curPaper="{{ curPaper }}"
+      data-questionIndex="-1"
+      bind:tap="itemSelected"
+    >
+      <view>{{ curPaper.title }}</view>
+      <view>{{ curPaper.description }}</view>
+    </view>
+    <view wx:if="{{ selectedIndex == -1 }}" class="edit-paper-item-handle">
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>编辑</view>
+      </view>
+    </view>
+  </view>
+  <view
+    wx:for="{{ curPaper.questionList }}"
+    wx:for-item="question"
+    wx:for-index="questionIndex"
+    wx:key="id"
+    model:class="{{ selectedIndex === questionIndex? 'edit-paper-item selected': 'edit-paper-item' }}"
+  >
+    <view 
+      class="edit-paper-item-content"
+      data-question="{{ question }}"
+      data-questionIndex="{{ questionIndex }}"
+      bind:tap="itemSelected"
+    >
+      <view>
+        <text class="" style="color: red;">*</text>
+        <text>{{ question.title }}</text>
+      </view>
+      <view wx:if="{{ question.type == 1}}">
+      </view>
+    </view>
+    <view wx:if="{{ selectedIndex === questionIndex }}" class="edit-paper-item-handle">
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>编辑</view>
+      </view>
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>复制</view>
+      </view>
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>上移</view>
+      </view>
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>下移</view>
+      </view>
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>删除</view>
+      </view>
+    </view>
+  </view>
+  <view class="add-box">
+    <van-button type="default" size="large" icon="plus" bind:tap="onPopupShow">
+      添加题目
+    </van-button>
+  </view>
+  <van-tabbar bind:change="onChange">
+    <van-tabbar-item name="add" icon="add-o">题目</van-tabbar-item>
+    <!-- <van-tabbar-item name="setting" icon="setting-o">设置</van-tabbar-item> -->
+    <van-tabbar-item name="preview" icon="eye-o">预览</van-tabbar-item>
+    <van-tabbar-item name="save" icon="completed">保存</van-tabbar-item>
+  </van-tabbar>
+
+
+  <!-- 底部 tab 操作弹出层 -->
+  <van-popup
+    model:show="{{ addPopupVisible }}"
+    position="bottom"
+    custom-style="height: 100%;padding: 28rpx;background-color: #F5F5F5;"
+    bind:close="onPopupClose"
+  >
+    <view class="title">添加基础题型</view>
+    <van-grid custom-class="popup-grid" column-num="4">
+      <van-grid-item 
+        icon="{{ base.icon }}" 
+        text="{{ base.text }}"
+        url="{{ base.url }}"
+        wx:for="{{ baseList }}"
+        wx:key="id"
+        wx:for-item="base"
+        wx:for-index="baseIndex"
+      />
+    </van-grid>
+
+    <view class="title">添加题目模板</view>
+    <van-grid custom-class="popup-grid" column-num="4">
+      <van-grid-item 
+        icon="{{ template.icon }}" 
+        text="{{ template.text }}"
+        url="{{ template.url }}"
+        wx:for="{{ templateList }}"
+        wx:key="id"
+        wx:for-item="template"
+        wx:for-index="templateIndex"
+      />
+    </van-grid>
+
+    <view class="title">批量添加题目</view>
+    <van-grid custom-class="popup-grid" column-num="4">
+      <van-grid-item 
+        icon="{{ batch.icon }}" 
+        text="{{ batch.text }}"
+        url="{{ batch.url }}"
+        wx:for="{{ batchList }}"
+        wx:key="id"
+        wx:for-item="batch"
+        wx:for-index="batchIndex"
+      />
+    </van-grid>
+    <van-button
+      custom-style="margin-top: 50rpx;"
+      type="default" 
+      size="large" 
+      bind:tap="onPopupClose"
+    >返回</van-button>
+  </van-popup>
+
 </view>

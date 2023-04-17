@@ -16,7 +16,7 @@
     >
       <view class="scroll-content">
         <view class="scroll-item" bind:tap="createPaper">
-          <van-icon name="guide-o" size="18px" color="#008CFF" />  
+          <van-icon name="plus" size="48rpx" color="#008CFF" />  
           <text>从空白创建</text>
         </view>
         <view 

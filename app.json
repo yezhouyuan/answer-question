@@ -4,7 +4,8 @@
     "pages/home/home",
     "pages/editPaper/editPaper",
     "pages/templatePaper/templatePaper",
-    "pages/createPaper/createPaper"
+    "pages/createPaper/createPaper",
+    "components/radio/radio"
   ],
   "window": {
     "backgroundTextStyle": "light",

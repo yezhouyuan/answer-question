@@ -18,7 +18,7 @@
 }
 .scroll-item{
   display: flex;
-  width: 240rpx;
+  width: 239rpx;
   height: 180rpx;
   border-radius: 8px;
   flex-direction: column;
@@ -27,7 +27,7 @@
   background-color: #ffffff;
   padding: 40rpx;
   margin: 20rpx;
-  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 6px rgba(171, 171, 171, 0.1);
 }
 
 .item-title{

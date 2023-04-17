@@ -1,1 +1,41 @@
 /* pages/editPaper/editPaper.wxss */
+.edit-paper{
+  width: 100vw;
+  height: 100vh;
+  background-color: #F5F5F5;
+}
+.edit-paper-item{
+  margin-bottom: 32rpx;
+}
+.edit-paper-item-content{
+  background-color: #FFFFFF;
+  padding: 32rpx;
+}
+
+.edit-paper-item-handle{
+  background-color: #FAFBFF;
+  border-top: #E5E5E5 solid 1px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 16rpx;
+  color: #9B9BA8;
+}
+
+.popup-grid{
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 1px 1px 6px rgba(171, 171, 171, 0.1);
+}
+
+.add-box{
+  padding: 80rpx 40rpx;
+}
+.title{
+  font-size: 0.7rem;
+  line-height: 50rpx;
+  color: #ABABAB;
+}
+.selected{
+  border: #008CFF solid 1px;
+}
