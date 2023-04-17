@@ -1,9 +1,64 @@
 <!--pages/editPaper/editPaper.wxml-->
 <view class="edit-paper">
-  <view class="edit-paper-item">
-    <text>{{ curPaper.title }}</text>
+  <view model:class="{{selectedIndex == -1? 'edit-paper-item selected': 'edit-paper-item'}}">
+    <view 
+      class="edit-paper-item-content" 
+      data-curPaper="{{ curPaper }}"
+      data-questionIndex="-1"
+      bind:tap="itemSelected"
+    >
+      <view>{{ curPaper.title }}</view>
+      <view>{{ curPaper.description }}</view>
+    </view>
+    <view wx:if="{{ selectedIndex == -1 }}" class="edit-paper-item-handle">
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>编辑</view>
+      </view>
+    </view>
   </view>
-  <view class="edit-paper-item">
+  <view
+    wx:for="{{ curPaper.questionList }}"
+    wx:for-item="question"
+    wx:for-index="questionIndex"
+    wx:key="id"
+    model:class="{{ selectedIndex === questionIndex? 'edit-paper-item selected': 'edit-paper-item' }}"
+  >
+    <view 
+      class="edit-paper-item-content"
+      data-question="{{ question }}"
+      data-questionIndex="{{ questionIndex }}"
+      bind:tap="itemSelected"
+    >
+      <view>
+        <text class="" style="color: red;">*</text>
+        <text>{{ question.title }}</text>
+      </view>
+      <view wx:if="{{ question.type == 1}}">
+      </view>
+    </view>
+    <view wx:if="{{ selectedIndex === questionIndex }}" class="edit-paper-item-handle">
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>编辑</view>
+      </view>
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>复制</view>
+      </view>
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>上移</view>
+      </view>
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>下移</view>
+      </view>
+      <view class="flex-col" >
+        <van-icon name="guide-o" size="18px" color="#008CFF" />  
+        <view>删除</view>
+      </view>
+    </view>
   </view>
   <view class="add-box">
     <van-button type="default" size="large" icon="plus" bind:tap="onPopupShow">
@@ -32,6 +87,7 @@
         text="{{ base.text }}"
         url="{{ base.url }}"
         wx:for="{{ baseList }}"
+        wx:key="id"
         wx:for-item="base"
         wx:for-index="baseIndex"
       />
@@ -44,6 +100,7 @@
         text="{{ template.text }}"
         url="{{ template.url }}"
         wx:for="{{ templateList }}"
+        wx:key="id"
         wx:for-item="template"
         wx:for-index="templateIndex"
       />
@@ -56,6 +113,7 @@
         text="{{ batch.text }}"
         url="{{ batch.url }}"
         wx:for="{{ batchList }}"
+        wx:key="id"
         wx:for-item="batch"
         wx:for-index="batchIndex"
       />
