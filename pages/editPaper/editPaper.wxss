@@ -4,12 +4,20 @@
   height: 100vh;
   background-color: #F5F5F5;
 }
+
+.edit-paper-item{
+  background-color: #FFFFFF;
+  padding: 32rpx;
+}
 .popup-grid{
   background-color: #FFFFFF;
   border-radius: 16rpx;
   box-shadow: 1px 1px 6px rgba(171, 171, 171, 0.1);
 }
 
+.add-box{
+  padding: 80rpx 40rpx;
+}
 .title{
   font-size: 0.7rem;
   line-height: 50rpx;

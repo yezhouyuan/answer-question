@@ -1,12 +1,14 @@
 <!--pages/editPaper/editPaper.wxml-->
 <view class="edit-paper">
-  <view class="edit-paper-header">
-    测试2222
+  <view class="edit-paper-item">
+    <text>{{ curPaper.title }}</text>
   </view>
-  <view >
+  <view class="edit-paper-item">
   </view>
-  <view>
-    <van-button type="default" size="large">add</van-button>
+  <view class="add-box">
+    <van-button type="default" size="large" icon="plus" bind:tap="onPopupShow">
+      添加题目
+    </van-button>
   </view>
   <van-tabbar bind:change="onChange">
     <van-tabbar-item name="add" icon="add-o">题目</van-tabbar-item>
@@ -20,7 +22,7 @@
   <van-popup
     model:show="{{ addPopupVisible }}"
     position="bottom"
-    custom-style="height: 100%;padding: 16rpx;background-color: #F5F5F5;"
+    custom-style="height: 100%;padding: 28rpx;background-color: #F5F5F5;"
     bind:close="onPopupClose"
   >
     <view class="title">添加基础题型</view>

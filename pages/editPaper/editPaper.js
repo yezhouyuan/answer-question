@@ -6,23 +6,23 @@ Page({
    */
   data: {
     addPopupVisible: false,
-    questionList: [],
+    curPaper: "",
     baseList: [
-      { id: "1", icon: "", text: "单选题", url: "../../components/radio/radio", },
-      { id: "2", icon: "", text: "多选题", url: "", },
-      { id: "3", icon: "", text: "填空题", url: "", },
-      { id: "4", icon: "", text: "图片上传", url: "", },
+      { id: "1", icon: "", text: "单选题", type: "1", url: "../../components/radio/radio", },
+      { id: "2", icon: "", text: "多选题", type: "2", url: "", },
+      { id: "3", icon: "", text: "填空题", type: "3", url: "", },
+      { id: "4", icon: "", text: "图片上传", type: "4", url: "", },
     ],
     templateList: [
-      { id: "1", icon: "", text: "姓名", url: "", },
-      { id: "2", icon: "", text: "性别", url: "", },
-      { id: "3", icon: "", text: "手机", url: "", },
-      { id: "4", icon: "", text: "日期", url: "", },
-      { id: "5", icon: "", text: "地区", url: "", },
+      { id: "1", icon: "", text: "姓名", type: "5", url: "", },
+      { id: "2", icon: "", text: "性别", type: "6", url: "", },
+      { id: "3", icon: "", text: "手机", type: "7", url: "", },
+      { id: "4", icon: "", text: "日期", type: "8", url: "", },
+      { id: "5", icon: "", text: "地区", type: "9", url: "", },
     ],
     batchList: [
-      { id: "1", icon: "", text: "题库选题", url: "", },
-      { id: "2", icon: "", text: "文本导入", url: "", },
+      { id: "1", icon: "", text: "题库选题", type: "10", url: "", },
+      { id: "2", icon: "", text: "文本导入", type: "11", url: "", },
     ]
   }, 
 
@@ -31,15 +31,18 @@ Page({
     if (event.detail) {
       switch (event.detail) {
         case "add": 
-          this.setData({
-            addPopupVisible: true,
-          });
+          this.onPopupShow();
           break;
       }
     }
     
   },
-
+  // 弹出层显示
+  onPopupShow() {
+    this.setData({
+      addPopupVisible: true,
+    })
+  },
   // 弹出层关闭
   onPopupClose() {
     this.setData({
@@ -52,7 +55,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.setData({
+      curPaper: {
+        id: "问卷ID",
+        title: "测试1111",
+        description: "这是问卷的简介",
+        questionList: [
+          {
+            id: "11111111",
+            title: "单选题",
+            value: "",
+            type: "1",
+          },
+          {
+            id: "2222222",
+            title: "多选题",
+            value: "",
+            type: "2"
+          },
+        ]
+      }
+    })
   },
 
   /**

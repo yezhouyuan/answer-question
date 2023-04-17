@@ -13,7 +13,7 @@
 }
 
 .home-content{
-  padding: 16px;
+  padding: 32rpx;
 }
 
 .scroll-item{
