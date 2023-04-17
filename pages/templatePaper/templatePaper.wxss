@@ -18,7 +18,7 @@
 }
 .scroll-item{
   display: flex;
-  width: 240rpx;
+  width: 239rpx;
   height: 180rpx;
   border-radius: 8px;
   flex-direction: column;
