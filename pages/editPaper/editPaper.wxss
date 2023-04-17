@@ -1,1 +1,17 @@
 /* pages/editPaper/editPaper.wxss */
+.edit-paper{
+  width: 100vw;
+  height: 100vh;
+  background-color: #F5F5F5;
+}
+.popup-grid{
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  box-shadow: 1px 1px 6px rgba(171, 171, 171, 0.1);
+}
+
+.title{
+  font-size: 0.7rem;
+  line-height: 50rpx;
+  color: #ABABAB;
+}

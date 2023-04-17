@@ -1,3 +1,69 @@
 <!--pages/editPaper/editPaper.wxml-->
-<view>
+<view class="edit-paper">
+  <view class="edit-paper-header">
+    测试2222
+  </view>
+  <view >
+  </view>
+  <view>
+    <van-button type="default" size="large">add</van-button>
+  </view>
+  <van-tabbar bind:change="onChange">
+    <van-tabbar-item name="add" icon="add-o">题目</van-tabbar-item>
+    <!-- <van-tabbar-item name="setting" icon="setting-o">设置</van-tabbar-item> -->
+    <van-tabbar-item name="preview" icon="eye-o">预览</van-tabbar-item>
+    <van-tabbar-item name="save" icon="completed">保存</van-tabbar-item>
+  </van-tabbar>
+
+
+  <!-- 底部 tab 操作弹出层 -->
+  <van-popup
+    model:show="{{ addPopupVisible }}"
+    position="bottom"
+    custom-style="height: 100%;padding: 16rpx;background-color: #F5F5F5;"
+    bind:close="onPopupClose"
+  >
+    <view class="title">添加基础题型</view>
+    <van-grid custom-class="popup-grid" column-num="4">
+      <van-grid-item 
+        icon="{{ base.icon }}" 
+        text="{{ base.text }}"
+        url="{{ base.url }}"
+        wx:for="{{ baseList }}"
+        wx:for-item="base"
+        wx:for-index="baseIndex"
+      />
+    </van-grid>
+
+    <view class="title">添加题目模板</view>
+    <van-grid custom-class="popup-grid" column-num="4">
+      <van-grid-item 
+        icon="{{ template.icon }}" 
+        text="{{ template.text }}"
+        url="{{ template.url }}"
+        wx:for="{{ templateList }}"
+        wx:for-item="template"
+        wx:for-index="templateIndex"
+      />
+    </van-grid>
+
+    <view class="title">批量添加题目</view>
+    <van-grid custom-class="popup-grid" column-num="4">
+      <van-grid-item 
+        icon="{{ batch.icon }}" 
+        text="{{ batch.text }}"
+        url="{{ batch.url }}"
+        wx:for="{{ batchList }}"
+        wx:for-item="batch"
+        wx:for-index="batchIndex"
+      />
+    </van-grid>
+    <van-button
+      custom-style="margin-top: 50rpx;"
+      type="default" 
+      size="large" 
+      bind:tap="onPopupClose"
+    >返回</van-button>
+  </van-popup>
+
 </view>
