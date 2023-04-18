@@ -5,13 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    form: {
+      title: "",
+      description: ""
+    },
     isEmpty: false,
   },
 
   // 提交
   submit(e) {
-    const textarea = e.detail.value.textarea;
-    if (textarea) {
+    const title = this.data.form.title;
+    if (title) {
       this.setData({
         isEmpty: false,
       });
@@ -25,14 +29,10 @@ Page({
     }
   },
 
-
-
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
   },
 
   /**

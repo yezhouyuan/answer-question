@@ -1,25 +1,35 @@
 <!--pages/createPaper/createPaper.wxml-->
 <view class="create-paper">
   <view class="create-paper-content">
-    <view class="header">
-      <text style="color: red; margin-right: 16rpx;">*</text>
-      <text>问卷名称</text>
-    </view>
+
     <form class="form" bindsubmit="submit">
+      <view class="header">
+        <text style="color: red; margin-right: 16rpx;">*</text>
+        <text>问卷名称</text>
+      </view>
       <textarea
+        model:value="{{ form.title }}"
         class="form-textarea"
         placeholder="请输入问卷名称" 
-        name="textarea"
+        name="title"
       >
       </textarea>
+      <view class="header">
+        <text>问卷说明</text>
+      </view>
       <textarea
+        model:value="{{ form.description }}"
         class="form-textarea"
         placeholder="请输入问卷说明" 
-        name="textarea"
+        name="description"
       >
       </textarea>
       <van-button type="info" form-type="submit" size="large">确定</van-button>
     </form>
-    <view hidden="{{ !isEmpty }}" class="warnning">请输入问卷名称！</view>
+    <van-dialog
+      message="请输入问卷名称"
+      model:show="{{ !isEmpty }}"
+      confirm-button-color="#008CFF"
+    />
   </view>
 </view>
