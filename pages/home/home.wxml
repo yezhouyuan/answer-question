@@ -32,6 +32,7 @@
       <view 
         class="scroll-item" 
         wx:for="{{dataList}}" 
+        wx:key="id"
         wx:for-item="item"
         wx:for-index="index"
         bind:tap="showPaperHandle"

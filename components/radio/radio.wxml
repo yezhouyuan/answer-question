@@ -1,2 +1,5 @@
 <!--components/radio/radio.wxml-->
-<text>components/radio/radio.wxml</text>
+<view class="radio">
+  <van-button size="small" type="info" bind:tap="back">创建</van-button>
+</view>
+

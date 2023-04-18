@@ -12,7 +12,13 @@
         name="textarea"
       >
       </textarea>
-      <van-button type="info" form-type="submit" size="large">提交</van-button>
+      <textarea
+        class="form-textarea"
+        placeholder="请输入问卷说明" 
+        name="textarea"
+      >
+      </textarea>
+      <van-button type="info" form-type="submit" size="large">确定</van-button>
     </form>
     <view hidden="{{ !isEmpty }}" class="warnning">请输入问卷名称！</view>
   </view>
