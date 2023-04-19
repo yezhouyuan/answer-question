@@ -21,7 +21,8 @@
         </view>
         <view 
           class="scroll-item" 
-          wx:for="{{ otherPaperList }}" 
+          wx:for="{{ otherPaperList }}"
+          wx:key="id"
           wx:for-item="item"
           wx:for-index="index"
           bind:tap="paperDetail"
