@@ -1,15 +1,15 @@
 /* pages/home/home.wxss */
 .home{
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   background-color: #F5F5F5;
 }
 .home-tabbar{
-  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
   background-color: #FFFFFF;
+  justify-content: space-between;
+  padding: 0 32rpx;
 }
 
 .home-content{
@@ -27,24 +27,23 @@
 
 .popup-header{
   font-size: 0.8rem;
-  margin-bottom: 16px;
+  line-height: 60rpx;
 }
 .popup-item-button{
   display: flex;
+  height: 70rpx;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 50rpx 40rpx;
   background-color: #FFFFFF;
   font-size: 0.8rem;
-  margin-right: 8px;
+  margin-right: 8rpx;
   border-radius: 4px;
 }
 
-
-
-
 .title{
   font-weight: bold;
+  height: 36rpx;
 }
 .text{
   padding: 6px;
@@ -54,4 +53,30 @@
   font-size: 0.8rem;
 }
 
+.item-title{
+  color: #8C8C8C;
+  font-size: 0.8rem;
+  line-height: 70rpx;
+}
 
+.dot{
+  display: block;
+  background-color: #999999;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 6rpx;
+}
+
+.status{
+  font-size: 0.9rem;
+  color: #999999;
+  display: flex;
+  align-items: center;
+}
+.text-ellipsis{
+  display: block;
+  white-space: nowrap; 
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

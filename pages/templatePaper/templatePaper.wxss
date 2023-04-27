@@ -1,8 +1,8 @@
 /* pages/template/template.wxss */
 .template-paper{
   width: 100vw;
-  height: 100vh;
-  background-color: #F5F5F5;
+  min-height: 100vh;
+  background-color: #F3F4F5;
 }
 .template-paper-tabbar{
   background-color: #ffffff;
@@ -18,22 +18,26 @@
 }
 .scroll-item{
   display: flex;
-  width: 239rpx;
-  height: 180rpx;
-  border-radius: 8px;
+  width: 260rpx;  
+  height: 160rpx;
+  border-radius: 4px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #ffffff;
-  padding: 40rpx;
-  margin: 20rpx;
+  margin: 16rpx;
+  padding: 32rpx;
   box-shadow: 1px 1px 6px rgba(171, 171, 171, 0.1);
 }
 
-.item-title{
+.item-header{
+  position: relative;
   display: flex;
-  margin-bottom: 70rpx;
+  width: 100%;
+  font-size: 32rpx;
+  margin-bottom: 40rpx;
 }
+
 .item-num{
   font-size: 0.8rem;
 }

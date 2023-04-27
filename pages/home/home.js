@@ -1,4 +1,5 @@
-
+import http from "../../utils/http.js";
+const app = getApp();
 // pages/home/home.js
 Page({
 
@@ -9,13 +10,19 @@ Page({
     searchParams: "",
     searchVisible: false,
     showPopup: false,
-    dataList: [
-      { id:"1", title: "测试1", questionNum: 12, status: "0" },
-      { id:"2", title: "测试1", questionNum: 12, status: "0" },
-      { id:"3", title: "测试1", questionNum: 12, status: "0" },
-
+    isShare: false,
+    paperList: [
+      {
+        id: 0,
+        title: "title",
+        description: "description",
+        questionList: [],
+        status: 0,
+        createId: 0
+      }
     ],
     curPaper: "",
+    curPaperIndex: 0,
   },
   // 显示菜单
   showMenu() {
@@ -26,17 +33,22 @@ Page({
     this.setData({
       searchVisible: true,
     })
-    wx.showToast({ title: '点击搜索', icon: 'none' });
   },
   // 执行搜索
-  onSearch() {
-
+  onSearch(e) {
+    const searchParams = e.detail? e.detail: "";
+    this.setData({
+      searchParams: searchParams
+    });
+    this.init();
   },
   // 搜索框隐藏
   onSearchCancel() {
     this.setData({
+      searchParams: "",
       searchVisible: false,
     })
+    this.init();
   },
   // 创建问卷
   onCreate() {
@@ -46,9 +58,12 @@ Page({
   },
   // 显示弹出层
   showPaperHandle(e) {
+    const curPaper = e.currentTarget.dataset.curpaper;
+    const curPaperIndex = e.currentTarget.dataset.curpaperindex;
     this.setData({
       showPopup: true,
-      curPaper: e.currentTarget.dataset.item,
+      curPaper: curPaper,
+      curPaperIndex: curPaperIndex,
     })
   },
   // 弹出层关闭
@@ -57,30 +72,186 @@ Page({
       showPopup: false,
     })
   },
+
+  // ######################### 弹出层事件 ####################
   // 发布
   onRelease() {
-    wx.showToast({ title: '发布', icon: 'none' });
+    let data = { ...this.data.curPaper };
+    if (data.status) {
+      // 暂停
+      wx.showModal({
+        title: '提示',
+        content: '暂停后问卷将无法填写，确认吗？',
+        success: (res) => {
+          if (res.confirm) {
+            data.status = 0;
+            const params = {
+              url: '/paper',
+              method: "PUT",
+              data: data,
+              callBack: (res) => {
+                this.init();
+                this.onPopupClose();
+              }
+            };
+            http.request(params);  
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+            return
+          }
+        }
+      })
+    } else {
+      // 发布
+      data.status = 1;
+      const params = {
+        url: '/paper',
+        method: "PUT",
+        data: data,
+        callBack: (res) => {
+          if (!this.data.isShare) {
+            wx.showModal({
+              title: '提示',
+              content: '发布成功',
+              success: (res) => {
+                if (res.confirm) {
+                  this.init();
+                  this.onPopupClose();
+                } else if (res.cancel) {
+                  this.init();
+                  this.onPopupClose();
+                  console.log('用户点击取消');
+                  return
+                }
+              }
+            })            
+          } else {
+            this.init();
+            this.onPopupClose();
+          }
+        }
+      };
+      http.request(params);      
+    }
   },
+
   // 复制
-  onCopy() {
-    wx.showToast({ title: '复制', icon: 'none' });
+  onCopy(e) {
+    let data = { ...this.data.curPaper };
+    data.id = "";
+    data.title = data.title + "【复制】";
+    data.status = 0;
+    console.log(data)
+    const params = {
+      url: '/paper',
+      method: "POST",
+      data: data,
+      callBack: res => {
+        this.init();
+        this.onPopupClose();
+      }
+    };
+    http.request(params);
   },
   // 删除
   remove() {
-    wx.showToast({ title: '删除', icon: 'none' });
+    let paperList = this.data.paperList;
+    const data = { id: this.data.curPaper.id };
+    wx.showModal({
+      title: '提示',
+      content: '您确定要删除这份问卷吗?',
+      success: (res) => {
+        if (res.confirm) {
+          const params = {
+            url: '/paper/' + data.id,
+            method: "DELETE",
+            callBack: (res) => {
+              this.init();
+              this.onPopupClose();
+            }
+          };
+          http.request(params);    
+        } else if (res.cancel) {
+          console.log('用户点击取消');
+          return
+        }
+      }
+    })
   },
   // 编辑
   edit() {
-    this.onPopupClose();
+
     wx.navigateTo({
-      url: '../editPaper/editPaper'
+      url: '../editPaper/editPaper?id=' + this.data.curPaper.id,
+      success: (res) => {
+        this.onPopupClose();
+      }
     })
+  },
+  // 分享
+  onShare() {
+    if (this.data.curPaper.status) {
+      this.gotoShare();
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '此问卷还未发布，确认发布吗?',
+        success: (res) => {
+          if (res.confirm) {
+            this.setData({
+              isShare: true,
+            })
+            this.onRelease();
+            this.gotoShare();
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+            return
+          }
+        }
+      })
+    }
+  },
+  // 跳转至分享页面
+  gotoShare() {
+    let curPaper = this.data.curPaper;
+    wx.navigateTo({
+      url: '../sharePaper/sharePaper',
+      success: (res) => {
+        res.eventChannel.emit('getCurPaper', { data: { curPaper } })
+        this.onPopupClose();
+      }
+    })
+    
+  },
+  // 初始化
+  init() {
+    const params = {
+      url: '/paper',
+      data: {
+        searchText: this.data.searchParams
+      },
+      method: "GET",
+      callBack: res => {
+        if (res) {
+          let paperList = res.records;
+          this.setData({
+            paperList: paperList,
+            isShare: false,
+          });
+          console.log('home/pageList', res.records)
+        }
+      }
+    };
+    http.request(params);
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+    this.init();
+  },
+  onShow() {
+    wx.hideHomeButton();
   },
   /**
    * 页面相关事件处理函数--监听用户下拉动作

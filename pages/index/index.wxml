@@ -17,7 +17,15 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
+
   <view class="usermotto">
-    <van-button type="primary" bind:tap="gotoHome">微信登录</van-button>
+    <van-button 
+      model:loading="{{ loading }}"
+      type="primary"
+      size="large"
+      bind:click="login"
+    >微信登录</van-button>  
   </view>
+
+
 </view>

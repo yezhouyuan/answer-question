@@ -1,42 +1,30 @@
 // index.js
+import http from "../../utils/http.js";
 // 获取应用实例
 const app = getApp()
 Page({
   data: {
+    loading: false,
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
   },
-  // 事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   // 登录
   login() {
-    wx.login({
-      success (res) {
-        if (res.code) {
-          //发起网络请求
-          wx.request({
-            url: 'https://api.weixin.qq.com/sns/jscode2session',
-            data: {
-              code: res.code
-            }
-          })
-        } else {
-          console.log('登录失败！' + res.errMsg)
-        }
-      }
+    // wx.navigateTo({
+    //   url: '../home/home',
+    // });
+    this.setData({
+      loading: true
     })
-  },
-  gotoHome() {
-    wx.navigateTo({
-      url: '../home/home'
-    })
+    http.getToken();
+    setTimeout(() => {
+      this.setData({
+        loading: false
+      })
+    }, 5000)
   },
   onLoad() {
     if (wx.getUserProfile) {
@@ -65,5 +53,13 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+    /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+    this.setData({
+      loading: false
+    })
+  },
 })

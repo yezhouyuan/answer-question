@@ -8,28 +8,25 @@
         <text>问卷名称</text>
       </view>
       <textarea
-        model:value="{{ form.title }}"
+        model:value="{{ title }}"
         class="form-textarea"
         placeholder="请输入问卷名称" 
         name="title"
       >
       </textarea>
-      <view class="header">
+      <view hidden="{{ !isEdit }}" class="header">
         <text>问卷说明</text>
       </view>
       <textarea
-        model:value="{{ form.description }}"
+        hidden="{{ !isEdit }}"
+        model:value="{{ description }}"
         class="form-textarea"
         placeholder="请输入问卷说明" 
         name="description"
       >
       </textarea>
-      <van-button type="info" form-type="submit" size="large">确定</van-button>
+      <van-button wx:if="{{ !isEdit }}" type="info" form-type="submit" size="large">创建问卷</van-button>
+      <van-button wx:else type="info" size="large" bind:click="back">确定</van-button>
     </form>
-    <van-dialog
-      message="请输入问卷名称"
-      model:show="{{ !isEmpty }}"
-      confirm-button-color="#008CFF"
-    />
   </view>
 </view>
